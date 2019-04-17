@@ -41,16 +41,18 @@ class App extends Component {
 	
 	handleAddPlayer = (name) => {
 		console.log(...this.state.players);
-		this.setState({
-			players: [
-				// Use spread operator to add new player to end of existing list
-				...this.state.players,
-				{
-					name,
-					score: 0,
-					id: this.prevPlayerId += 1
-				}
-			]
+		this.setState( prevState => {
+			return {
+				players: [
+					// Use spread operator to add new player to end of existing list
+					...prevState.players,
+					{
+						name,
+						score: 0,
+						id: this.prevPlayerId += 1
+					}
+				]
+			}
 		});
 	}
 

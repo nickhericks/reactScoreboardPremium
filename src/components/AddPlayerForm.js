@@ -31,7 +31,6 @@ class AddPlayerForm extends Component {
 				<input 
 					type="submit"
 					value="Add Player"
-
 				/>
 
 			</form>
