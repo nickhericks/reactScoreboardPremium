@@ -28,13 +28,31 @@ class App extends Component {
         id: 4
       }
     ]
-  };
+	};
+	
+	// player id counter
+	prevPlayerId = 4;
 
   handleScoreChange = (index, delta) => {
     this.setState(prevState => ({
       score: prevState.players[index].score += delta
 		}));
-  };
+	};
+	
+	handleAddPlayer = (name) => {
+		console.log(...this.state.players);
+		this.setState({
+			players: [
+				// Use spread operator to add new player to end of existing list
+				...this.state.players,
+				{
+					name,
+					score: 0,
+					id: this.prevPlayerId += 1
+				}
+			]
+		});
+	}
 
 
   handleRemovePlayer = id => {
@@ -68,7 +86,7 @@ class App extends Component {
         ))}
 
 				<AddPlayerForm 
-
+					addPlayer={this.handleAddPlayer}
 				/>
       </div>
     );
