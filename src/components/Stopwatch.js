@@ -8,13 +8,19 @@ class Stopwatch extends Component {
 		previousTime: 0
 	};
 
+	// 
 	componentDidMount() {
 		console.log('stopwatch mounted')
 		this.intervalID = setInterval(() => this.tick(), 100)
 	}
 
+	// Do not leak memory if stopwatch is removed from page
+	componentWillUnmount() {
+		clearInterval(this.intervalID);
+	}
+
 	tick = () => {
-		// console.log('ticking...')
+		console.log('ticking...')
 		if (this.state.isRunning) {
 			const now = Date.now();
 			this.setState( prevState => ({
@@ -36,6 +42,10 @@ class Stopwatch extends Component {
 		}
 	}
 
+	handleReset = () => {
+		this.setState({ elapsedTime: 0 });
+	}
+
 	render() {
 
 		const seconds = Math.floor(this.state.elapsedTime / 1000);
@@ -52,7 +62,7 @@ class Stopwatch extends Component {
 				</button>
 
 
-				<button>Reset</button>
+				<button onClick={this.handleReset}>Reset</button>
 
 
 			</div>
