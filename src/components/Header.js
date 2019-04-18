@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Stats from './Stats';
+import Stopwatch from "./Stopwatch";
 
 const Header = props => {
   return (
@@ -11,7 +12,7 @@ const Header = props => {
 
       <h1>{props.title}</h1>
 
-
+			<Stopwatch />
 
     </header>
   );
