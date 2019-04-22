@@ -18,21 +18,27 @@ This project was built as I was learning about the Express web framework and the
 
 ## Code example
 ```javascript
-import React from 'react';
-import Stats from './Stats';
-import Stopwatch from "./Stopwatch";
+// Begin interval for tick()
+  componentDidMount() {
+    console.log('stopwatch mounted')
+    this.intervalID = setInterval(() => this.tick(), 100)
+  }
 
-const Header = ({ players, title }) => {
-  return (
-    <header>
-      <Stats players={players} />
-      <h1>{title}</h1>
-      <Stopwatch />
-    </header>
-  );
-};
+  // Do not leak memory if stopwatch is removed from page
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
 
-export default Header;
+  tick = () => {
+    console.log('ticking...')
+    if (this.state.isRunning) {
+      const now = Date.now();
+      this.setState( prevState => ({
+        previousTime: now,
+        elapsedTime: prevState.elapsedTime + (now - this.state.previousTime)
+      }));
+    }
+  }
 ```
 
 ## Acknowledgements

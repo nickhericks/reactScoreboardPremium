@@ -8,7 +8,7 @@ class Stopwatch extends Component {
 		previousTime: 0
 	};
 
-	// 
+	// Begin interval for tick()
 	componentDidMount() {
 		console.log('stopwatch mounted')
 		this.intervalID = setInterval(() => this.tick(), 100)
