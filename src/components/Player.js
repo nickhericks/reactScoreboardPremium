@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Counter from './Counter';
+import Icon from './Icon';
 
 class Player extends PureComponent {
 
@@ -28,24 +29,21 @@ class Player extends PureComponent {
 		console.log(name + " player: rendered");
 		
 		return (
-			<div className="player">
-				<span className="player-name">
-					<button
-						className="remove-player"
-						onClick={() => removePlayer(id)}
-					>
-						✖
-					</button>
-					{name}
-				</span>
+      <div className="player">
+        <span className="player-name">
+          <button
+            className="remove-player"
+            onClick={() => removePlayer(id)}
+          >
+            ✖
+          </button>
+          <Icon />
+          {name}
+        </span>
 
-				<Counter
-					score={score}
-					index={index}
-					changeScore={changeScore}
-				/>
-			</div>
-		);
+        <Counter score={score} index={index} changeScore={changeScore} />
+      </div>
+    );
 	}
 };
 
