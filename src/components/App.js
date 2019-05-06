@@ -29,6 +29,18 @@ class App extends Component {
       }
     ]
 	};
+
+
+	// Find high score and return it, otherwise return null
+	getHighScore = () => {
+		const scores = this.state.players.map(p => p.score);
+		const highScore = Math.max(...scores);
+		if (highScore) {
+			return highScore;
+		}
+		return null;
+	}
+
 	
 	// player id counter
 	prevPlayerId = 4;
@@ -39,6 +51,7 @@ class App extends Component {
 		}));
 	};
 	
+
 	handleAddPlayer = (name) => {
 		console.log(...this.state.players);
 		this.setState( prevState => {
@@ -67,6 +80,11 @@ class App extends Component {
 
 
   render() {
+
+		// Represents current high score
+		const highScore = this.getHighScore();
+
+
     return (
       <div className="scoreboard">
         <Header
@@ -84,6 +102,7 @@ class App extends Component {
             removePlayer={this.handleRemovePlayer}
             changeScore={this.handleScoreChange}
 						index={index}
+						isHighScore={highScore === player.score} // is a player's 'score' prop equal to the high score?
           />
         ))}
 
