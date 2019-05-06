@@ -9,6 +9,7 @@ class Player extends PureComponent {
 	static propTypes = {
 		changeScore: PropTypes.func,
 		removePlayer: PropTypes.func,
+		isHighScore: PropTypes.bool,
 		name: PropTypes.string,
 		score: PropTypes.number,
 		id: PropTypes.number,
@@ -23,7 +24,8 @@ class Player extends PureComponent {
 			id,
 			index,
 			removePlayer,
-			changeScore
+			changeScore,
+			isHighScore
 		} = this.props;
 		
 		console.log(name + " player: rendered");
@@ -37,7 +39,7 @@ class Player extends PureComponent {
           >
             ✖
           </button>
-          <Icon />
+          <Icon isHighScore={isHighScore} />
           {name}
         </span>
 
